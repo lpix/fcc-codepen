@@ -1,0 +1,184 @@
+@import url(https://fonts.googleapis.com/css?family=Arvo:700);
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+html,
+body {
+  font-family: Raleway;
+  background: #fff;
+  text-align: center;
+}
+
+.vertical-center {
+  padding-top: 30vh;
+  margin-top: -20px;
+}
+
+.isHidden {
+  visibility: hidden;
+}
+
+
+/*Title ---------------*/
+
+h1 {
+  padding-bottom: 20px;
+  text-shadow: 5px 0 5px #414141;
+  color: #000;
+}
+
+
+/*Search Box -------------*/
+
+#sBox {
+  border: transparent;
+  border-bottom: 2px solid #011f4b;
+  border-right: 3px solid #011f4b;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  color: #6497b1;
+  width: 60%;
+  font-size: 30px;
+  font-variant: small-caps;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/*Image ---------------*/
+
+.wiki {
+  padding: 10px;
+}
+
+.wikiSpin {
+  -webkit-animation: spin 5s linear infinite;
+  animation: spin 5s linear infinite;
+}
+
+.rand {
+  padding: 5px;
+  color: #005b96;
+  font-size: 2em;
+  display: none;
+  border-bottom: 2px solid #b3cde0;
+  border-right: 2px solid #b3cde0;
+}
+
+a:hover .rand {
+  display: inline-block;
+  animation: appear 0.75s linear 1;
+}
+
+
+/*New content Arrow -------------*/
+
+#down-arrow {
+  content: '';
+  display: inline-block;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  left: 0;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-top: 15px solid #27AEAE;
+  border-right: 100px solid transparent;
+  border-bottom: 0;
+  border-left: 100px solid #ffe700;
+}
+
+#down-arrow:hover {
+  border-top: 15px solid #1f8b8b;
+}
+
+
+/*Results content --------------*/
+
+button.accordion {
+  background-color: #e5e6eb;
+  color: #000080;
+  cursor: pointer;
+  padding: 18px;
+  width: 70%;
+  text-align: left;
+  border: 1px solid #011f4b;
+  outline: none;
+  transition: 0.4s;
+  margin-top: 10px;
+  font-family: Arvo;
+  font-weight: bold;
+}
+
+#panel {
+  position: relative;
+  color: #000080;
+  width: 70%;
+  padding: 8px;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0 0 5px #005b96;
+  margin-bottom: 10px;
+}
+
+button.accordion:hover {
+  background-color: #64c5aa;
+}
+
+button.accordion:active {
+  background-color: #549da3;
+}
+
+
+/*Animation -----------*/
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes Pulse {
+  0% {
+    -webkit-box-shadow: 0 0 5px #4bd7d7;
+  }
+  50% {
+    -webkit-box-shadow: 0 0 7px #fff;
+  }
+  100% {
+    -webkit-box-shadow: 0 0 5px #4bd7d7;
+  }
+}
+
+@keyframes Pulse {
+  0% {
+    box-shadow: 0 0 5px #4bd7d7;
+  }
+  50% {
+    box-shadow: 0 0 7px #fff;
+  }
+  100% {
+    box-shadow: 0 0 5px #4bd7d7;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    text-decoration: underline;
+  }
+}
