@@ -1,0 +1,62 @@
+$(document).ready(function() {
+  $('.wiki').addClass('wikiSpin');
+
+  //Variables------------
+  var search = "";
+  var n = 0;
+  var entry;
+  var etext;
+
+  //functions------------
+  function accordion() {
+    //Sets the accordions for every entry
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].onclick = function() {
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+      };
+    }
+  }
+  //Storing the user request
+  function requestS() {
+    search = $('#sBox').val();
+
+    if (search == '') {
+      //if user did not input anything
+      //Clear everything
+      $('#some').empty();
+
+      //message user of action
+      $('#some').html("<h1 style='color: #011f4b; text-shadow: none;'>Hmm, didn't get that. Try again, or hover over the logo!</h1>");
+    } else {
+      //clear all entries
+      $('#some').empty();
+      //load the page with entries
+      var queryURL = 'https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srsearch=' + search + '&callback=?'
+
+      $.getJSON(queryURL, function(json) {
+
+        for (var n = 0; n < 10; n++) {
+          entry = json.query.search[n].title
+          etext = json.query.search[n].snippet
+          $('#some').append('<button class="accordion ">' + entry + '</a></button>');
+          $('#some').append('<div id="panel" class="container"><p>' + etext + '</p></div>');
+        };
+      });
+    };
+  }
+  //viewer usage--------------
+  //when the user presses 'Enter' on searchbox
+  $('#sBox').keyup(function(event) {
+
+    if (event.keyCode == 13) {
+      $('.wiki').removeClass('wikiSpin');
+      requestS();
+    }
+
+  });
+
+});
