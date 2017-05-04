@@ -1,0 +1,31 @@
+<div class="vertical-center">
+  <h1>Search Wikipedia</h1>
+
+  <!--title-->
+  <a href="location.href='http://en.wikipedia.org/wiki/Special:Random" formtarget="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/103px-Wikipedia-logo-v2.svg.png" alt="Wikipedia logo" class="wiki vertical-center" />
+    <p class='rand'>Show me a Random Article</p>
+  </a>
+
+
+  <!--Input box-->
+  <input id="sBox" type="text" placeholder="Type Here" />
+
+  <!--Random article button
+  <button id="rbutton" class="container" onClick="location.href='http://en.wikipedia.org/wiki/Special:Random'" formtarget="_blank"> Show me a Random Article!</button>-->
+
+  <!--Container for all things accordion-->
+  <section id="some" style="margin-top:20px;">
+
+    <!--title of entry
+    <button class="accordion ">other</button>-->
+    <!--entry
+    <div id="panel" class="container">-->
+    <!--text
+      <p>some text</p>
+    </div>-->
+    <!--arrow to see more entries ad infinitum
+  </section>
+    <div id="down-arrow" class=" container">-->
+  </section>
+</div>
