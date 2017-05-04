@@ -1,0 +1,24 @@
+<body>
+  <div id=calc>
+    <div class="screen" id="screen"></div>
+    <div id='keys'>
+      <a id='C'>C</a>
+      <a id="num">1</a>
+      <a id="num">2</a>
+      <a id="num">3</a>
+      <a id="oper">+</a>
+      <a id="num">4</a>
+      <a id="num">5</a>
+      <a id="num">6</a>
+      <a id="oper">-</a>
+      <a id="num">7</a>
+      <a id="num">8</a>
+      <a id="num">9</a>
+      <a id="oper">x</a>
+      <a id="num">0</a>
+      <a id="dec">.</a>
+      <a id="equals">=</a>
+      <a id="oper">/</a>
+    </div>
+  </div>
+</body>
