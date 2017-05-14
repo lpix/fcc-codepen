@@ -1,0 +1,69 @@
+/*Coor palette: 006ba6 0496ff ffbc42 d81159 8f2d56*/
+
+html,body{
+  text-align:center;
+  background-color: #006ba6;
+  color: #fff;
+}
+.v-center {
+  padding-top: 20vh;
+  margin-top: -20px;
+}
+
+/*circle------------------*/
+
+.circle{
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid #ffbc42;
+  background-color: rgba(225, 8, 89,0.3);
+  font-size: 20px;
+  background-repeat: no-repeat;
+}
+
+#faren{
+  display:block;
+  margin: 15px auto;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.3);
+}
+
+#faren:hover{
+  background-color: rgba(255,255,255,0.9);
+  color:#000;
+  border: 2px solid #ffbc42;
+}
+/*smaller circles------------*/
+#some{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#sectn{
+  background-color: rgba(255,255,255,0.3);
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ffbc42;
+}
+
+
+button:hover{
+  width: 150px;
+  height:150px;
+  background-color: rgba(255,255,255,0.6);
+}
+
