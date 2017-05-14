@@ -1,0 +1,10 @@
+<body class='v-center'>
+  <h1>The Weather</h1>
+  <div class='circle '>
+  </div>
+    <button id='faren'>°F</button>
+    <div id='sectn'>Place: <p id='place'></p></div>
+    <div id='sectn'>Temperature: <p id='temp'></p></div>
+    <div id='sectn'>Wind speed: <p id='wind'></p></div>
+ 
+</body>
