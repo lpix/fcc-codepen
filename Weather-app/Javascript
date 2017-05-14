@@ -1,0 +1,199 @@
+//looks crappy on small screens: iphone
+//http://openweathermap.org/current#geo
+//http://bugs.openweathermap.org/projects/api/wiki/Weather_Condition_Codes
+
+$(document).ready(function() {
+
+  //variables
+  var latitude = 0.00257; //default for Greenwhich, England
+  var longitude = 51.4845;
+  var imperial = false;
+  var key = 'dab13e6acc861fb5a3c919f3865ffa53';
+  //image dict
+  var imgarr = {
+    //11d:thunderstorm, 09d:drizzle,10d:rain, 13d: snow, 50d: atmosphere events
+    //01d:sun, 01n: moon, 02d: cloud-sun, 02n:cloud-night, 03d: scattered-clouds, 04d: clouds
+
+    "11d": {
+      link: "http://image005.flaticon.com/120/svg/110/110333.svg",
+      author: "AhnGreen",
+      alink: "http://www.flaticon.com/authors/anhgreen"
+    },
+    "09d": {
+      link: "http://image005.flaticon.com/17/svg/55/55371.svg",
+      author: "Yannick",
+      alink: "http://www.flaticon.com/authors/yannick"
+    },
+    "10d": {
+      link: "http://image005.flaticon.com/124/svg/134/134134.svg",
+      author: "EpicCoders",
+      alink: "http://www.flaticon.com/authors/epiccoders"
+    },
+    "13d": {
+      link: "http://image005.flaticon.com/1/svg/95/95911.svg",
+      author: "Freepik",
+      alink: "http://www.flaticon.com/authors/freepik"
+    },
+    "50d": {
+      link: "http://image005.flaticon.com/17/svg/55/55621.svg",
+      author: "Yannick",
+      alink: "http://www.flaticon.com/authors/yannick"
+    },
+    "01d": {
+      link: "http://image005.flaticon.com/122/svg/118/118755.svg",
+      author: "Lucy G",
+      alink: "http://www.flaticon.com/authors/lucy-g"
+    },
+    "01n": {
+      link: "http://image005.flaticon.com/159/svg/136/136614.svg",
+      author: "Madebyoliver",
+      alink: "http://www.flaticon.com/authors/madebyoliver"
+    },
+    "02d": {
+      link: "http://image005.flaticon.com/159/svg/136/136580.svg",
+      author: "Madebyoliver",
+      alink: "http://www.flaticon.com/authors/madebyoliver"
+    },
+    "02n": {
+      link: "http://image005.flaticon.com/159/svg/136/136577.svg",
+      author: "Madebyoliver",
+      alink: "http://www.flaticon.com/authors/madebyoliver"
+    },
+    "03d": {
+      link: "http://image005.flaticon.com/150/svg/131/131043.svg",
+      author: "Iconnice",
+      alink: "http://www.flaticon.com/authors/iconnice"
+    },
+    "04d": {
+      link: "http://image005.flaticon.com/124/svg/134/134131.svg",
+      author: "EpicCoders",
+      alink: "http://www.flaticon.com/authors/epiccoders"
+    },
+    "tornado": {
+      link: "http://image005.flaticon.com/89/svg/89/89385.svg",
+      author: "Hand Drawn Goods",
+      alink: "http://www.flaticon.com/authors/hand-drawn-goods"
+    },
+    "volcano": {
+      link: "http://image005.flaticon.com/1/svg/70/70927.svg",
+      author: "Freepik",
+      alink: "http://www.flaticon.com/authors/freepik"
+    }
+  };
+
+  //Call Functions
+  function getLocation() {
+    //get geo data..doesn't work if you call a different function
+    var data;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        data = callAPI(latitude, longitude);
+      });
+    }
+
+    if (latitude != 0 && longitude != 51) {
+      var message = "No coordinate available for your position.";
+      $('#place').text(message);
+      //use default value
+      //call functions
+      data = callAPI(latitude, longitude);
+    }
+  }
+  //Set place, wind, temperature, sunrise, and sunset
+  function setWeather(dat, imp) {
+    console.log(dat);
+    setIcon(dat['weather'][0].icon);
+    var place = dat['name'] + ', ' + dat['sys'].country;
+    $('#place').text(place);
+    toTemp(dat['main'].temp, imp);
+    wind(dat['wind'].speed, imp);
+  }
+  //Call API
+  function callAPI(latitude, longitude, imp) {
+    $.getJSON('http://api.openweathermap.org/data/2.5/weather?callback=?', {
+      lat: latitude,
+      lon: longitude,
+      APPID: key
+    }, function(data) {
+      if (data['name'] == "Earth") {
+        //fix this..some other message to user
+        console.log("try something else");
+      } else {
+        setWeather(data, imp); //would this work?
+      }
+    });
+  }
+
+  //weather functions-------------------
+
+  function wind(val, imp) {
+    //to convert m/s to miles/hr when want imperial (imp=true)
+   
+    if (imp) {
+      var speed = (val * 2.23694).toFixed(1) + ' mi/hr';
+    } else {
+      speed = val.toFixed(1) + ' m/s';
+    }
+    $("#wind").text(speed);
+    
+  }
+  //Display temperature (imperial = false, by default)
+  function toTemp(K, imp) {
+    //fix to display according to time zones
+    var temperature;
+   
+    
+    if (imp) {
+      temperature = (K * (9 / 5)) - 459.67;
+      $('#temp').text(temperature.toFixed(1) + '°F');
+    } else {
+      temperature = K - 273.15;
+      $('#temp').text(temperature.toFixed(1) + '°C');
+    }
+  }
+
+  //Display forecast icons------------------
+  function setIcon(icon, id) {
+    var imgurl, author, authorl;
+    if (id == 781) {
+      imgurl = imgarr['volcano'].link;
+      author = imgarr['volcano'].author;
+      authorl = imgarr['volcano'].alink;
+    } else {
+
+      imgurl = imgarr[icon].link;
+      author = imgarr[icon].author;
+      authorl = imgarr[icon].alink;
+    }
+
+    $('.circle').css({
+      'background-image': 'url(' + imgurl + ')'
+    });
+  }
+  //Imperial button toggle-----------
+
+  //calling all functions-------------------
+  callAPI(latitude, longitude);
+  getLocation();
+
+  $("#faren").on("click", function() {
+    if ($(this).text() == "°F") {
+      $('.circle').css({
+        'background-color': 'rgba(252, 215, 150,0.3)'
+      });
+      $(this).text('°C')
+      imperial = true;
+      callAPI(latitude, longitude, imperial);
+    } else {
+      $('.circle').css({
+        'background-color': 'rgba(225, 8, 89,0.3)'
+      });
+      $(this).text('°F')
+      imperial = false;
+      callAPI(latitude, longitude, imperial);
+    }
+  });
+
+});
